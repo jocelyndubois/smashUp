@@ -37,7 +37,7 @@ class picker {
 
     public function getImage($faction)
     {
-        return '<img src="/smashUp/factions/' . str_replace(' ', '_', $faction) . '.png" width="100" height="100" title="' . $faction . '"/><br/>';
+        return '<img src="/factions/' . str_replace(' ', '_', $faction) . '.png" width="100" height="100" title="' . $faction . '"/><br/>';
     }
 
     public function doPick()
@@ -141,13 +141,15 @@ class picker {
 }
 
 $players = [];
-if ($seed = $_GET['seed']) {
+if (isset($_GET['seed'])) {
+    $seed = $_GET['seed'];
     $picks = json_decode(base64_decode($seed), true);
     $picker = new picker($picks);
 } else {
-    if ($players = $_GET['players']) {
+    if (isset($_GET['players'])) {
+        $players = $_GET['players'];
         $players = explode(',', $players);
-    } elseif (((int)$counter = $_GET['numberOfPlayers']) || !isset($_GET['numberOfPlayers'])) {
+    } elseif (!isset($_GET['numberOfPlayers']) || ((int)$counter = $_GET['numberOfPlayers'])) {
         if (!isset($_GET['numberOfPlayers'])) {
             $counter = 4;
         }

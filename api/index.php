@@ -66,7 +66,7 @@ class picker {
     public function displayResults($picks)
     {
         $firstPlayer = $picks['firstPlayer'];
-        $url = 'http://jocelyn-dubois.fr/smashUp/pick.php?seed=' . base64_encode(json_encode($picks));
+        $url = 'https://smash-up.vercel.app/?seed=' . base64_encode(json_encode($picks));
 
         echo '<br/>
 <br/>
